@@ -1,9 +1,7 @@
+import CodeBox from "./components/CodeBox";
+
 function App() {
-  return (
-    <div >
-      <h1>Hello there,</h1>
-    </div>
-  );
+  return <CodeBox />;
 }
 
 export default App;
