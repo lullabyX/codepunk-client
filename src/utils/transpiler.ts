@@ -1,5 +1,5 @@
 import * as esbuild from "esbuild-wasm";
-import {unpkgPathPlugin} from "../plugins/unpkg-path-plugin";
+import { unpkgPathPlugin } from "../plugins/unpkg-path-plugin";
 
 // react strict mode runs useEffect twice, need to handle if strict mode is used
 export const startService = async () => {
@@ -9,12 +9,12 @@ export const startService = async () => {
   });
 };
 
-export const bundler = async (
-): Promise<esbuild.BuildResult> => {
+export const bundler = async (): Promise<esbuild.BuildResult> => {
   return esbuild.build({
     entryPoints: ["index.js"],
     bundle: true,
     write: false,
-    plugins: [unpkgPathPlugin()]
+    plugins: [unpkgPathPlugin()],
+    define: { "process.env.NODE_ENV": '"production"', global: "window" },
   });
 };
