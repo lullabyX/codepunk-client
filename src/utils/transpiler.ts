@@ -1,4 +1,5 @@
 import * as esbuild from "esbuild-wasm";
+import {unpkgPathPlugin} from "../plugins/unpkg-path-plugin";
 
 // react strict mode runs useEffect twice, need to handle if strict mode is used
 export const startService = async () => {
@@ -9,10 +10,11 @@ export const startService = async () => {
 };
 
 export const bundler = async (
-  rawCode: string
-): Promise<esbuild.TransformResult> => {
-  return esbuild.transform(rawCode, {
-    target: "es2015",
-    loader: "jsx",
+): Promise<esbuild.BuildResult> => {
+  return esbuild.build({
+    entryPoints: ["index.js"],
+    bundle: true,
+    write: false,
+    plugins: [unpkgPathPlugin()]
   });
 };

@@ -10,10 +10,9 @@ const CodeBox: React.FC = () => {
     event
   ) => {
     event.preventDefault();
-    if (codeInput) {
-      const result = await bundler(codeInput);
-      setTransformedOutput(result.code);
-    }
+      const result = await bundler();
+      console.log(result);
+      setTransformedOutput(result.outputFiles![0].text);
   };
 
   useEffect(() => {
