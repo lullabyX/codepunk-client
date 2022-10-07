@@ -1,14 +1,16 @@
 import axios from "axios";
 import * as esbuild from "esbuild-wasm";
+import localforage from "localforage";
+
+const pkgCache = localforage.createInstance({
+  name: "pkgCache",
+});
 
 export const unpkgPathPlugin = (codeInput: string) => {
   return {
     name: "unpkg-path-plugin",
     async setup(build: esbuild.PluginBuild) {
       build.onResolve({ filter: /.*/ }, async (args: esbuild.OnResolveArgs) => {
-        // console.log("====================================");
-        // console.log("onResolve", args);
-        // console.log("====================================");
         if (args.path === "index.js") {
           return { path: args.path, namespace: "a" };
         }
@@ -27,22 +29,26 @@ export const unpkgPathPlugin = (codeInput: string) => {
       });
 
       build.onLoad({ filter: /.*/ }, async (args: esbuild.OnLoadArgs) => {
-        // console.log("====================================");
-        // console.log("onLoad", args);
-        // console.log("====================================");
         if (args.path === "index.js") {
           return {
             loader: "jsx",
             contents: codeInput,
           };
         }
+
+        const cache = await pkgCache.getItem<esbuild.OnLoadResult>(args.path);
+        if (cache) {
+          return cache;
+        }
         const { data, request } = await axios.get(args.path);
 
-        return {
+        const result: esbuild.OnLoadResult = {
           loader: "jsx",
           contents: data,
           resolveDir: new URL(request.responseURL).pathname,
         };
+        await pkgCache.setItem(args.path, result);
+        return result;
       });
     },
   };
