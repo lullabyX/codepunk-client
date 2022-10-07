@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
-import { bundler, startService } from "../utils/transpiler";
+import { bundler, startService } from "../utils/bundler";
 import CodeRender from "./CodeRender";
 
 const CodeBox: React.FC = () => {
@@ -10,8 +10,7 @@ const CodeBox: React.FC = () => {
     event
   ) => {
     event.preventDefault();
-      const result = await bundler();
-      console.log(result);
+      const result = await bundler(codeInput);
       setTransformedOutput(result.outputFiles![0].text);
   };
 

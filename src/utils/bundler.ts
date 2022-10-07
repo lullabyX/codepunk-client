@@ -9,12 +9,12 @@ export const startService = async () => {
   });
 };
 
-export const bundler = async (): Promise<esbuild.BuildResult> => {
+export const bundler = async (codeInput: string): Promise<esbuild.BuildResult> => {
   return esbuild.build({
     entryPoints: ["index.js"],
     bundle: true,
     write: false,
-    plugins: [unpkgPathPlugin()],
+    plugins: [unpkgPathPlugin(codeInput)],
     define: { "process.env.NODE_ENV": '"production"', global: "window" },
   });
 };

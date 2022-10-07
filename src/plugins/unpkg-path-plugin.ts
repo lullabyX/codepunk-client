@@ -1,7 +1,7 @@
 import axios from "axios";
 import * as esbuild from "esbuild-wasm";
 
-export const unpkgPathPlugin = () => {
+export const unpkgPathPlugin = (codeInput: string) => {
   return {
     name: "unpkg-path-plugin",
     async setup(build: esbuild.PluginBuild) {
@@ -33,11 +33,7 @@ export const unpkgPathPlugin = () => {
         if (args.path === "index.js") {
           return {
             loader: "jsx",
-            contents: `import React from 'react';
-            import * as ReactDOM from 'react-dom';
-            import axios from 'axios';
-            import * as esbuild from 'esbuild-wasm';
-             console.log(React, ReactDOM, axios, esbuild)`,
+            contents: codeInput,
           };
         }
         const { data, request } = await axios.get(args.path);
