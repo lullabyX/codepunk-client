@@ -6,7 +6,7 @@ import { unpkgResolvePlugin } from "../plugins/unpkg-resolve-plugin";
 export const startService = async () => {
   await esbuild.initialize({
     worker: true,
-    wasmURL: "",
+    wasmURL: "https://unpkg.com/esbuild-wasm/esbuild.wasm",
   });
 };
 
