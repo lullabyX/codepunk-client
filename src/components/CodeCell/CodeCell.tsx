@@ -15,9 +15,11 @@ const CodeCell: React.FC = () => {
   };
 
   return (
-    <Resizable direction="horizontal">
+    <Resizable direction="vertical">
       <div className={`cyberpunk ${classes.codecell}`}>
-        <CodeEditor onBundle={rawCodeBundler} />
+        <Resizable direction="horizontal">
+          <CodeEditor onBundle={rawCodeBundler} />
+        </Resizable>
         <Preview code={code} />
       </div>
     </Resizable>
