@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { bundler } from "../../bundler/bundler";
 import "../../cyberpunk.css";
+import Resizable from "../Resizable/Resizable";
+import classes from "./CodeCell.module.css";
 import CodeEditor from "./CodeEditor";
 import Preview from "./Preview";
 
@@ -13,10 +15,12 @@ const CodeCell: React.FC = () => {
   };
 
   return (
-    <div className="cyberpunk">
-      <CodeEditor onBundle={rawCodeBundler} />
-      <Preview code={code} />
-    </div>
+    <Resizable direction="horizontal">
+      <div className={`cyberpunk ${classes.codecell}`}>
+        <CodeEditor onBundle={rawCodeBundler} />
+        <Preview code={code} />
+      </div>
+    </Resizable>
   );
 };
 

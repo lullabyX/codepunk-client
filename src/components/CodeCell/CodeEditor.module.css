@@ -1,26 +1,36 @@
 .editor-wrapper {
   position: relative;
   height: 100%;
+  width: 100%;
 }
 
 .editor-wrapper .button {
+  padding: 15px 20px;
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: -52px;
+  left: calc(60% - 25px);
   z-index: 20;
   opacity: 0;
   transition: opacity 0.3s;
+  transform: scale(0.5);
 }
 
 .editor-wrapper .button-alt {
+  padding: 15px 20px;
   position: absolute;
-  bottom: 5px;
-  right: 5px;
+  top: -52px;
+  left: calc(60% - 150px);
   z-index: 20;
   opacity: 0;
   transition: opacity 0.3s;
+  transform: scale(0.5);
 }
 
 .editor-wrapper:hover button {
   opacity: 1;
+}
+
+.editor-wrapper .button:hover,
+.editor-wrapper .button-alt:hover {
+  z-index: 50;
 }
