@@ -1,11 +1,10 @@
 import { Fragment } from "react";
-import CodeBox from "./components/CodeBox";
-import CodeEditor from "./components/CodeEditor";
+import CodeCell from "./components/CodeCell/CodeCell";
 
 function App() {
   return (
     <Fragment>
-      <CodeBox />
+      <CodeCell />
     </Fragment>
   );
 }
