@@ -51,13 +51,13 @@ const CodeEditor: React.FC<codeEditorProps> = (props) => {
   return (
     <div className={classes["editor-wrapper"]}>
       <button
-        className={`${classes.button} cyberpunk2077 green`}
+        className={`${classes['button-alt']} cyberpunk2077 green`}
         onClick={formatHandler}
       >
         Format_
       </button>
       <button
-        className={`cyberpunk2077 purple ${classes["button-alt"]}`}
+        className={`cyberpunk2077 purple ${classes["button"]}`}
         onClick={previewHandler}
       >
         Preview_
