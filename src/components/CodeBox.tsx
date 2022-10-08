@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useRef, useState } from "react";
 import { bundler, startService } from "../utils/bundler";
+import CodeEditor from "./CodeEditor";
 
 const CodeBox: React.FC = () => {
   const [codeInput, setCodeInput] = useState<string>("");
@@ -46,16 +47,14 @@ const CodeBox: React.FC = () => {
     startService();
   }, []);
 
-  const textareaChangeHandler: React.ChangeEventHandler<HTMLTextAreaElement> = (
-    event
-  ) => {
-    setCodeInput(event.target.value);
+  const textareaChangeHandler = (code: string) => {
+    setCodeInput(code);
   };
 
   return (
     <Fragment>
+      <CodeEditor onInputChange={textareaChangeHandler} />
       <form onSubmit={submitHandler}>
-        <textarea value={codeInput} onChange={textareaChangeHandler}></textarea>
         <div>
           <button>Submit</button>
         </div>
