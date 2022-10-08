@@ -7,6 +7,11 @@
   background-position: 50%;
 }
 
+.resize-horizontal {
+  display: flex;
+  flex-direction: row;
+}
+
 .react-resizable-handle-s {
   left: 10px;
   height: 5px;
@@ -16,9 +21,10 @@
 }
 
 .react-resizable-handle-e {
-  width: 10px;
-  min-width: 10px;
-  height: 100%;
+  width: 5px;
+  top: 0px;
+  min-width: 5px;
+  height: calc(100%);
   cursor: col-resize;
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==");
 }

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import html from "../../utils/iframeHtml";
-import classes from './Preview.module.css'
+import './Preview.css'
 
 interface previewProps {
   code: string;
@@ -20,7 +20,7 @@ const Preview: React.FC<previewProps> = ({ code }) => {
   }, [code]);
 
   return (
-    <div className={classes.wrapper}>
+    <div className="preview-wrapper">
       <iframe
         title="preview"
         srcDoc={html}
