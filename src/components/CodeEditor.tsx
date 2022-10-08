@@ -1,6 +1,9 @@
 import Editor, { OnChange, OnMount } from "@monaco-editor/react";
+import prettier from "prettier";
+import parser from "prettier/parser-babel";
 import { useRef } from "react";
 
+import classes from "./CodeEditor.module.css";
 interface codeEditorProps {
   onInputChange: (code: string) => void;
 }
@@ -10,15 +13,6 @@ const CodeEditor: React.FC<codeEditorProps> = (props) => {
 
   const editorMountHandler: OnMount = (editor, monaco) => {
     editorRef.current = editor;
-    monaco.editor.defineTheme("my-theme", {
-      base: "vs",
-      inherit: true,
-      rules: [],
-      colors: {
-        "editor.background": "#FFFF00",
-      },
-    });
-    monaco.editor.setTheme("my-theme");
   };
 
   const editorChangeHandler: OnChange = (value, event) => {
@@ -27,28 +21,43 @@ const CodeEditor: React.FC<codeEditorProps> = (props) => {
     }
   };
 
+  const formatHandler: React.MouseEventHandler<HTMLButtonElement> = () => {
+    const unformatted = editorRef.current.getValue();
+    const formatted = prettier.format(unformatted, {
+      parser: "babel",
+      plugins: [parser],
+      semi: true,
+    });
+    editorRef.current.setValue(formatted);
+  };
+
+  const editorOptions = {
+    wordWrap: "on",
+    minimap: {
+      enabled: false,
+    },
+    tabsize: 2,
+    lineNumbersMinChars: 3,
+    showUnused: false,
+    dragAndDrop: true,
+    renderFinalNewline: false,
+    scrollBeyondLastLine: false,
+    automaticLayout: true,
+    folding: false,
+  };
+
   return (
-    <Editor
-      height="500px"
-      language="javascript"
-      theme="my-theme"
-      onMount={editorMountHandler}
-      onChange={editorChangeHandler}
-      options={{
-        wordWrap: "on",
-        minimap: {
-          enabled: false,
-        },
-        tabsize: 2,
-        lineNumbersMinChars: 3,
-        showUnused: false,
-        dragAndDrop: true,
-        renderFinalNewline: false,
-        scrollBeyondLastLine: false,
-        automaticLayout: true,
-        folding: false,
-      }}
-    />
+    <div className={classes["editor-wrapper"]}>
+      <button onClick={formatHandler}>Format</button>
+      <Editor
+        height="500px"
+        language="javascript"
+        theme="vs-dark"
+        onMount={editorMountHandler}
+        onChange={editorChangeHandler}
+        options={editorOptions}
+      />
+    </div>
   );
 };
 
