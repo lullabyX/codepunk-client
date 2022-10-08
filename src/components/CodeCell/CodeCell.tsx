@@ -1,5 +1,6 @@
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import { bundler } from "../../bundler/bundler";
+import "../../cyberpunk.css";
 import CodeEditor from "./CodeEditor";
 import Preview from "./Preview";
 
@@ -12,10 +13,10 @@ const CodeCell: React.FC = () => {
   };
 
   return (
-    <Fragment>
+    <div className="cyberpunk">
       <CodeEditor onBundle={rawCodeBundler} />
       <Preview code={code} />
-    </Fragment>
+    </div>
   );
 };
 
