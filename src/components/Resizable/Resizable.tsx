@@ -9,7 +9,7 @@ interface resizableProps {
 const Resizable: React.FC<resizableProps> = (props) => {
   const [innerWidth, setInnerWidth] = useState(window.innerWidth);
   const [innerHeight, setInnerHeight] = useState(window.innerHeight);
-  const [width, setWidth] = useState(window.innerWidth * 0.75);
+  const [width, setWidth] = useState(window.innerWidth * 0.6);
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
