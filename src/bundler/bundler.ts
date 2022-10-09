@@ -7,7 +7,6 @@ let esbuildIsInitialized = false;
 export const bundler = async (
   codeInput: string
 ): Promise<esbuild.BuildResult> => {
-  
   if (!esbuildIsInitialized) {
     await esbuild.initialize({
       worker: true,

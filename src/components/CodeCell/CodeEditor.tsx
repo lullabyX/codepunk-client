@@ -9,6 +9,7 @@ import "./syntex.css";
 
 interface codeEditorProps {
   onBundle: (rawCode: string) => void;
+  onPrettierError: (error: string) => void;
 }
 
 const CodeEditor: React.FC<codeEditorProps> = (props) => {
@@ -27,11 +28,19 @@ const CodeEditor: React.FC<codeEditorProps> = (props) => {
 
   const formatHandler: React.MouseEventHandler<HTMLButtonElement> = () => {
     const unformatted = editorRef.current.getValue();
-    const formatted = prettier.format(unformatted, {
-      parser: "babel",
-      plugins: [parser],
-      semi: true,
-    });
+    let formatted = '';
+    try {
+      formatted = prettier.format(unformatted, {
+        parser: "babel",
+        plugins: [parser],
+        semi: true,
+      });
+    } catch (error) {
+      if (error instanceof Error)
+      {
+        props.onPrettierError(error.message);
+      }
+    }
     editorRef.current.setValue(formatted);
   };
 

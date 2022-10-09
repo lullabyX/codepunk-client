@@ -7,20 +7,45 @@ import CodeEditor from "./CodeEditor";
 import Preview from "./Preview";
 
 const CodeCell: React.FC = () => {
-  const [code, setCode] = useState<string>("");
+  const [code, setCode] = useState<{ code: string; error: string }>({
+    code: "",
+    error: "",
+  });
 
   const rawCodeBundler = async (rawCode: string) => {
-    const result = await bundler(rawCode);
-    setCode(result.outputFiles![0].text);
+    try {
+      const result = await bundler(rawCode);
+      setCode({
+        code: result.outputFiles![0].text,
+        error: "",
+      });
+    } catch (error) {
+      if (error instanceof Error) {
+        setCode({
+          code: "",
+          error: error.message,
+        });
+      }
+    }
+  };
+
+  const prettierErrorHandler = (error: string) => {
+    setCode({
+      code: "",
+      error: error,
+    });
   };
 
   return (
     <Resizable direction="vertical">
       <div className={`cyberpunk ${classes.codecell}`}>
         <Resizable direction="horizontal">
-          <CodeEditor onBundle={rawCodeBundler} />
+          <CodeEditor
+            onBundle={rawCodeBundler}
+            onPrettierError={prettierErrorHandler}
+          />
         </Resizable>
-        <Preview code={code} />
+        <Preview message={code} />
       </div>
     </Resizable>
   );

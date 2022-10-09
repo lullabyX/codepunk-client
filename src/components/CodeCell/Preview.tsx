@@ -3,21 +3,24 @@ import html from "../../utils/iframeHtml";
 import './Preview.css'
 
 interface previewProps {
-  code: string;
+  message: {
+    code: string,
+    error: string,
+  }
 }
-const Preview: React.FC<previewProps> = ({ code }) => {
+const Preview: React.FC<previewProps> = ({ message }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
-
+  const {code, error} = message;
   useEffect(() => {
     iframeRef.current!.srcdoc = html;
     const timer = setTimeout(() => {
-      iframeRef.current!.contentWindow?.postMessage(code, "*");
+      iframeRef.current!.contentWindow?.postMessage({code, error}, "*");
     }, 50);
 
     return () => {
       clearTimeout(timer);
     };
-  }, [code]);
+  }, [code, error]);
 
   return (
     <div className="preview-wrapper">
