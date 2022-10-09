@@ -1,10 +1,12 @@
 import Editor, { OnMount } from "@monaco-editor/react";
 import prettier from "prettier";
 import parser from "prettier/parser-babel";
-import {useRef} from "react";
-import '../../cyberpunk.css'
+import { useRef } from "react";
+import "../../cyberpunk.css";
 
-import classes from "./CodeEditor.module.css";
+import "./CodeEditor.css";
+import "./syntex.css";
+
 interface codeEditorProps {
   onBundle: (rawCode: string) => void;
 }
@@ -49,15 +51,15 @@ const CodeEditor: React.FC<codeEditorProps> = (props) => {
   };
 
   return (
-    <div className={classes["editor-wrapper"]}>
+    <div className="editor-wrapper">
       <button
-        className={`${classes['button-alt']} cyberpunk2077 green`}
+        className={`button-alt cyberpunk2077 green`}
         onClick={formatHandler}
       >
         Format_
       </button>
       <button
-        className={`cyberpunk2077 purple ${classes["button"]}`}
+        className={`cyberpunk2077 purple button`}
         onClick={previewHandler}
       >
         Preview_

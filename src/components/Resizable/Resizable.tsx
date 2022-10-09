@@ -9,7 +9,8 @@ interface resizableProps {
 const Resizable: React.FC<resizableProps> = (props) => {
   const [innerWidth, setInnerWidth] = useState(window.innerWidth);
   const [innerHeight, setInnerHeight] = useState(window.innerHeight);
-  const [width, setWidth] = useState(window.innerWidth * 0.6);
+  const [width, setWidth] = useState(window.innerWidth * .6);
+  const [widthScale, setWidthScale] = useState(.6)
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
@@ -20,6 +21,7 @@ const Resizable: React.FC<resizableProps> = (props) => {
         if (window.innerWidth- 5 < width) {
           setWidth(window.innerWidth - 5);
         }
+        else setWidth(window.innerWidth * widthScale)
       }, 100);
     };
 
@@ -49,6 +51,7 @@ const Resizable: React.FC<resizableProps> = (props) => {
       maxConstraints: [innerWidth - 5, Infinity],
       resizeHandles: ["e"],
       onResizeStop(_, data) {
+        setWidthScale(data.size.width / innerWidth);
         setWidth(data.size.width);
       },
     };
