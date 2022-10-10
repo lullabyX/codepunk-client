@@ -290,12 +290,13 @@ div.cyberpunk {
   max-width: calc(100% - 10px);
 }
 
-div.cyberpunk .black {
+div.cyberpunk.black {
   background-color: #000;
 }
 
 /* Paragraphs and lists */
 
+div.cyberpunk-alt,
 p.cyberpunk {
   padding: 30px 15px 30px;
   border: 30px solid #000;
@@ -309,6 +310,7 @@ p.cyberpunk {
   position: relative;
 }
 
+div.cyberpunk-alt.inverse,
 p.cyberpunk.inverse {
   border: none;
   padding: 40px 15px 30px;
@@ -332,6 +334,7 @@ p.cyberpunk:before {
   border-left: 2px solid var(--border-color);
 }
 
+div.cyberpunk-alt.inverse,
 p.cyberpunk.inverse:before {
   content: "T-71";
   right:90px;

@@ -1,0 +1,103 @@
+:root {
+  --glitched-duration: 0.9s;
+  --glitched-long-duration: 3s;
+  --yellow-color: #f9f002;
+  --yellow-color-opacity: #f9f00242;
+  --orange-color: #ff9800;
+  --border-color: #8ae66e;
+  --red-color: #ff003c;
+  --blue-color: #136377;
+  --green-color: #446d44;
+  --purple-color: purple;
+  --neon-color: #39ff14;
+}
+
+/* advent-pro-regular - latin */
+@font-face {
+  font-family: "Advent Pro";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.googleapis.com/css2?family=Advent+Pro:wght@100;200;300;400;500;600;700&display=swap); /* IE9 Compat Modes */
+}
+
+.cyberpunk-md {
+  /* border-top: 30px solid var(--yellow-color); */
+  border-bottom: 20px solid var(--yellow-color);
+  border-left: 5px solid var(--yellow-color);
+  padding: 0px 0px 0px 20px;
+  clip-path: polygon(
+    100% 0,
+    100% calc(100% - 12px),
+    75% calc(100% - 12px),
+    calc(75% - 30px) 100%,
+    calc(5% + 20px) 100%,
+    5% calc(100% - 15px),
+    0 calc(100% - 15px),
+    0 0,
+    100% 0
+  );
+  background-color: #000;
+  color: var(--yellow-color);
+  border-right: 3px solid var(--border-color);
+}
+
+.w-md-editor-fullscreen {
+  clip-path: unset !important;
+}
+
+.w-md-editor-toolbar,
+.w-md-editor-text,
+.dotted {
+  background: #000;
+  background-image: radial-gradient(
+    var(--yellow-color-opacity) 1px,
+    transparent 0
+  );
+  background-size: 5px 5px;
+  background-position: -13px -3px;
+}
+
+.w-md-editor-toolbar {
+  background-color: #f9f002;
+  border-radius: unset;
+  clip-path: polygon(
+    350px 0%,
+    calc(350px + 25px) 22px,
+    calc(100% - 115px) calc(0% + 22px),
+    calc(100% - 90px) 0,
+    100% 0,
+    100% 100%,
+    0 100%,
+    0 16px,
+    16px 0
+  );
+}
+.w-md-editor-toolbar li button {
+  color: #000;
+}
+
+.w-md-editor-preview {
+  box-shadow: inset 1px 0 0 0 #6e996c;
+  border-radius: unset;
+}
+
+.w-md-editor {
+  box-shadow: 1px 0px var(--color-border-default);
+  border-radius: unset;
+}
+
+/* .wmde-markdown {
+  font-family: "Advent Pro", arial;
+} */
+
+.w-md-editor-bar {
+  position: relative;
+  top: 5px;
+  display: block;
+  background-color: var(--neon-color);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  width: calc(80% - 25px);
+  cursor: row-resize;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=");
+}

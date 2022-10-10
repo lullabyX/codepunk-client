@@ -1,7 +1,7 @@
-import CodeCell from "./components/CodeCell/CodeCell";
+import MdEditor from "./components/MdEditor/MdEditor";
 
 function App() {
-  return <CodeCell />;
+  return <MdEditor />;
 }
 
 export default App;
