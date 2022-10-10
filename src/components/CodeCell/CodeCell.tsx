@@ -14,6 +14,11 @@ const CodeCell: React.FC = () => {
 
   const rawCodeBundler = async (rawCode: string) => {
     try {
+      setCode({
+        code: `document.getElementById("root").innerHTML =
+          '<h3>Compiling...</h3>'`,
+        error: "",
+      });
       const result = await bundler(rawCode);
       setCode({
         code: result.outputFiles![0].text,
@@ -38,7 +43,7 @@ const CodeCell: React.FC = () => {
 
   return (
     <Resizable direction="vertical">
-      <div className={`cyberpunk ${classes.codecell}`}>
+      <div className={`cyberpunk yellow ${classes.codecell}`}>
         <Resizable direction="horizontal">
           <CodeEditor
             onBundle={rawCodeBundler}

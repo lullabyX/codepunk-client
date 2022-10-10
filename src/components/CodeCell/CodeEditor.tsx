@@ -35,13 +35,13 @@ const CodeEditor: React.FC<codeEditorProps> = (props) => {
         plugins: [parser],
         semi: true,
       });
+      editorRef.current.setValue(formatted);
     } catch (error) {
       if (error instanceof Error)
       {
         props.onPrettierError(error.message);
       }
     }
-    editorRef.current.setValue(formatted);
   };
 
   const editorOptions = {
