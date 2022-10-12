@@ -41,17 +41,21 @@ const CodeCell: React.FC = () => {
   };
 
   return (
-    <Resizable direction="vertical">
-      <div className={`${classes["cyberpunk-container"]} ${classes.codecell} `}>
-        <Resizable direction="horizontal">
-          <CodeEditor
-            onBundle={rawCodeBundler}
-            onPrettierError={prettierErrorHandler}
-          />
-        </Resizable>
-        <Preview message={code} />
-      </div>
-    </Resizable>
+    <div style={{'marginBottom': '70px'}}>
+      <Resizable direction="vertical">
+        <div
+          className={`${classes["cyberpunk-container"]} ${classes.codecell} `}
+        >
+          <Resizable direction="horizontal">
+            <CodeEditor
+              onBundle={rawCodeBundler}
+              onPrettierError={prettierErrorHandler}
+            />
+          </Resizable>
+          <Preview message={code} />
+        </div>
+      </Resizable>
+    </div>
   );
 };
 
