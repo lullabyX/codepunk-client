@@ -12,7 +12,7 @@ export interface MoveAction {
 
 export interface InsertBeforeAction {
   id: Cell["id"] | null;
-  cell: {content: Cell['content'], type: Cell['type']};
+  type: Cell['type']
 }
 
 export interface DeleteAction {

@@ -47,12 +47,16 @@ export const insertBeforeAction = (
   state: CellState,
   action: PayloadAction<InsertBeforeAction>
 ) => {
-  const newCellId = Math.random().toString(64).substring(2, 8);
+  const newCellId = Math.random().toString(32).substring(2, 8);
   if (!action.payload.id) {
     state.order.push(newCellId);
   } else {
     const index = state.order.findIndex((id) => id === action.payload.id);
     state.order.splice(index, 0, newCellId);
   }
-  state.data[newCellId] = {id: newCellId, ...action.payload.cell};
+  state.data[newCellId] = {
+    id: newCellId,
+    type: action.payload.type,
+    content: action.payload.type === "text" ? "Double-Click to Edit" : "",
+  };
 };
