@@ -10,7 +10,7 @@ export interface MoveAction {
   direction: CellMoveDirection;
 }
 
-export interface InsertBeforeAction {
+export interface InsertAfterAction {
   id: Cell["id"] | null;
   type: Cell['type']
 }
@@ -22,5 +22,5 @@ export interface DeleteAction {
 export type CellActions =
   | UpdateAction
   | MoveAction
-  | InsertBeforeAction
+  | InsertAfterAction
   | DeleteAction;

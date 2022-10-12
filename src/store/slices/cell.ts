@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   deleteAction,
-  insertBeforeAction,
+  insertAfterAction,
   moveAction,
   updateAction,
 } from "../actions/cell";
@@ -28,7 +28,7 @@ export const cellSlice = createSlice({
     update: updateAction,
     move: moveAction,
     delete: deleteAction,
-    insertBefore: insertBeforeAction,
+    insertAfter: insertAfterAction,
   },
 });
 

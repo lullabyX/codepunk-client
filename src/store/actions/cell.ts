@@ -1,7 +1,7 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import {
   DeleteAction,
-  InsertBeforeAction,
+  InsertAfterAction,
   MoveAction,
   UpdateAction,
 } from "../action-types/cell";
@@ -43,16 +43,16 @@ export const moveAction = (
   }
 };
 
-export const insertBeforeAction = (
+export const insertAfterAction = (
   state: CellState,
-  action: PayloadAction<InsertBeforeAction>
+  action: PayloadAction<InsertAfterAction>
 ) => {
   const newCellId = Math.random().toString(32).substring(2, 8);
   if (!action.payload.id) {
-    state.order.push(newCellId);
+    state.order.unshift(newCellId);
   } else {
     const index = state.order.findIndex((id) => id === action.payload.id);
-    state.order.splice(index, 0, newCellId);
+    state.order.splice(index + 1, 0, newCellId);
   }
   state.data[newCellId] = {
     id: newCellId,
