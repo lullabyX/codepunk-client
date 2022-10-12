@@ -20,11 +20,25 @@
   src: url(https://fonts.googleapis.com/css2?family=Advent+Pro:wght@100;200;300;400;500;600;700&display=swap); /* IE9 Compat Modes */
 }
 
-.cyberpunk-md {
+.cyberpunk-md-editor-container {
+  border-left: 5px solid var(--yellow-color);
+  clip-path: polygon(
+    20px 0,
+    100% 0,
+    100% 0px,
+    100% 100%,
+    15px 100%,
+    14px calc(100% - 14px),
+    0px calc(100% - 15px),
+    0 22px
+  );
+}
+
+.cyberpunk-md-editor {
   /* border-top: 30px solid var(--yellow-color); */
   border-bottom: 20px solid var(--yellow-color);
-  border-left: 5px solid var(--yellow-color);
-  padding: 0px 0px 0px 20px;
+  /* border-left: 5px solid var(--yellow-color); */
+  /* padding: 0px 0px 0px 20px; */
   clip-path: polygon(
     100% 0,
     100% calc(100% - 12px),
@@ -41,7 +55,33 @@
   border-right: 3px solid var(--border-color);
 }
 
-.w-md-editor-fullscreen {
+.cyberpunk-md-preview {
+  border: 5px solid var(--yellow-color);
+  padding: 20px;
+  border-top: 20px solid var(--yellow-color);
+  clip-path: polygon(
+    100% 0,
+    calc(100% - 85px) 0,
+    calc(100% - 100px) 15px,
+    calc(70% + 20px) 15px,
+    70% 0,
+    calc(35% + 20px) 0,
+    35% calc(0% + 15px),
+    0 calc(0% + 15px),
+    0 73%,
+    0 27%,
+    0 46%,
+    0 55%,
+    0 calc(100% - -1px),
+    6% calc(100% - -1px),
+    calc(6% + 15px) calc(100% - -1px),
+    calc(30% - 15px) calc(100% - -1px),
+    30% calc(100% - -1px),
+    100% calc(100% - -1px)
+  );
+}
+
+.cyberpunk-md-editor .w-md-editor-fullscreen {
   clip-path: unset !important;
 }
 
@@ -90,14 +130,14 @@
   font-family: "Advent Pro", arial;
 } */
 
-.w-md-editor-bar {
+.cyberpunk-md-editor .w-md-editor-bar {
   position: relative;
-  top: 5px;
+  bottom: -26px;
   display: block;
   background-color: var(--neon-color);
   background-repeat: no-repeat;
   background-position: 50%;
   width: calc(80% - 25px);
   cursor: row-resize;
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=");
+  /* background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII="); */
 }

@@ -1,6 +1,6 @@
 import MDEditor from "@uiw/react-md-editor";
-import {useEffect, useRef, useState} from "react";
-import './MdEditor.css'
+import { useEffect, useRef, useState } from "react";
+import "./MdEditor.css";
 
 const MdEditor: React.FC = () => {
   const [mdValue, setMdValue] = useState<string | undefined>("# Skippy!");
@@ -30,7 +30,7 @@ const MdEditor: React.FC = () => {
   if (!showEditor) {
     return (
       <div
-        className={`cyberpunk-md dotted`}
+        className={`cyberpunk-md-preview dotted`}
         onDoubleClick={setShowEditor.bind(null, true)}
       >
         <MDEditor.Markdown
@@ -41,8 +41,12 @@ const MdEditor: React.FC = () => {
     );
   }
   return (
-    <div className={`cyberpunk-md dotted`} ref={editorRef}>
-      <MDEditor value={mdValue} onChange={setMdValue} />
+    <div className={`cyberpunk-md-editor-container`} ref={editorRef}>
+      <MDEditor
+        className={`cyberpunk-md-editor`}
+        value={mdValue}
+        onChange={setMdValue}
+      />
     </div>
   );
 };
