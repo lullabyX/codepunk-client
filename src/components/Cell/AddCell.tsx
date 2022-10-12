@@ -1,4 +1,3 @@
-import { MouseEvent } from "react";
 import { useDispatch } from "react-redux";
 import "../../cyberpunk.css";
 import { Cell, cellActions } from "../../store";
@@ -10,20 +9,11 @@ interface AddCellProps {
 
 const AddCell: React.FC<AddCellProps> = ({ id }) => {
   const dispatch = useDispatch();
-  const textCellAddHandler = (_: MouseEvent) => {
+  const cellAddHandler = (cellType: Cell["type"]): void => {
     dispatch(
-      cellActions.insertBefore({
+      cellActions.insertAfter({
         id: id,
-        type: "text",
-      })
-    );
-  };
-
-  const codeCellAddHandler = (_: MouseEvent) => {
-    dispatch(
-      cellActions.insertBefore({
-        id: id,
-        type: "javascript",
+        type: cellType,
       })
     );
   };
@@ -32,13 +22,13 @@ const AddCell: React.FC<AddCellProps> = ({ id }) => {
     <div className={classes.container}>
       <div className={`${classes["container-button"]}`}>
         <button
-          onClick={textCellAddHandler}
+          onClick={cellAddHandler.bind(null, "text")}
           className={`cyberpunk2077 blue button`}
         >
           Text_
         </button>
         <button
-          onClick={codeCellAddHandler}
+          onClick={cellAddHandler.bind(null, "javascript")}
           className={`cyberpunk2077 purple button ${classes["alt"]}`}
         >
           Code_

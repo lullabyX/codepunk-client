@@ -4,7 +4,7 @@ import "./MdEditor.css";
 
 const MdEditor: React.FC = () => {
   const [mdValue, setMdValue] = useState<string | undefined>("# Skippy!");
-  const [showEditor, setShowEditor] = useState(true);
+  const [showEditor, setShowEditor] = useState(false);
   const editorRef = useRef<HTMLDivElement>(null);
 
   document.documentElement.setAttribute("data-color-mode", "dark");
