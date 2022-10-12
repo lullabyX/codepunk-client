@@ -1,2 +1,3 @@
-export {cellActions, cellSlice} from './slices/cell'
-export * as store from './store'
+export * from './slices/cell'
+export * from './store'
+export * from './cell'

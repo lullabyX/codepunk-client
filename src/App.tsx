@@ -1,7 +1,13 @@
-import MdEditor from "./components/MdEditor/MdEditor";
+import { Provider } from "react-redux";
+import CellList from "./components/Cell/CellList";
+import { store } from "./store";
 
 function App() {
-  return <MdEditor />;
+  return (
+    <Provider store={store}>
+      <CellList />
+    </Provider>
+  );
 }
 
 export default App;
