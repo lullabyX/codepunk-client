@@ -31,7 +31,7 @@ const Resizable: React.FC<resizableProps> = (props) => {
       window.removeEventListener("resize", listener);
       clearTimeout(timer);
     };
-  }, [width]);
+  }, [width, widthScale]);
 
   let resizableBoxProps: ResizableBoxProps;
   if (props.direction === "vertical") {
