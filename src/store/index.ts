@@ -1,3 +1,6 @@
 export * from './slices/cell'
 export * from './store'
 export * from './cell'
+export * from './bundle'
+export * from './slices/bundle'
+export * from './action-creators/bundle'
