@@ -9,7 +9,7 @@ export const bundleStartAction = (
   const id = action.payload.id;
   state[id] = {
     cellId: id,
-    loading: false,
+    loading: true,
     code: "",
     error: null,
   };

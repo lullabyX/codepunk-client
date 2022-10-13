@@ -1,5 +1,5 @@
 .codecell {
-  height: 100%;
+  height: calc(100% - 45px);
   display: flex;
   flex-direction: row;
 }
@@ -26,4 +26,83 @@
     10px calc(100% - 0px),
     0% calc(100% - 10px)
   );
+}
+
+.preview-container {
+  position: relative;
+  height: 100%;
+  flex-grow: 1;
+  background-color: white;
+}
+
+.preview-loading {
+  position: inherit;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 10%;
+  padding-right: 10%;
+  animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.classic-5 {
+  position: inherit;
+  width: calc(100% - 10px);
+  /* top: calc(50% - 30px); */
+  text-align: center;
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 30px;
+  animation: c5 1s infinite;
+}
+
+.classic-5::before {
+  content: "Loading...";
+}
+
+@keyframes c5 {
+  0%,
+  12.5% {
+    transform: translate(10px, 0);
+  }
+  13%,
+  25% {
+    transform: translate(4px, -4px);
+  }
+  26%,
+  37.5% {
+    transform: translate(2px, 8px);
+  }
+  38%,
+  50% {
+    transform: translate(12px, -6px);
+  }
+  51%,
+  62.5% {
+    transform: translate(0, 12px);
+  }
+  63%,
+  75% {
+    transform: translate(-8px, -4px);
+  }
+  76%,
+  86.5% {
+    transform: translate(-12px, 6px);
+  }
+  87%,
+  100% {
+    transform: translate(6px, 0);
+  }
 }

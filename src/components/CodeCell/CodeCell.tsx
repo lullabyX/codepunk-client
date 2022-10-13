@@ -1,4 +1,4 @@
-import {bundleActions, bundleProcessInit, Cell} from "../../store";
+import { bundleActions, bundleProcessInit, Cell } from "../../store";
 import useTypedDispatch from "../hooks/use-typed-dispatch";
 import useTypedSelector from "../hooks/use-typed-selector";
 import Resizable from "../Resizable/Resizable";
@@ -14,7 +14,7 @@ const CodeCell: React.FC<CodeCellProps> = ({ id }) => {
   const bundle = useTypedSelector((state) => state.bundle[id]);
 
   const message = {
-    code: bundle? bundle.code: '',
+    code: bundle ? bundle.code : "",
     error: bundle?.error,
   };
 
@@ -27,6 +27,14 @@ const CodeCell: React.FC<CodeCellProps> = ({ id }) => {
   const prettierErrorHandler = (error: string) => {
     dispatch(bundleActions.end({ id, code: null, error: error }));
   };
+
+  const previewWindow = bundle?.loading ? (
+    <div className={classes['preview-loading']}>
+      <div className={classes["classic-5"]} />
+    </div>
+  ) : (
+    <Preview message={message} />
+  );
 
   return (
     <div style={{ marginBottom: "70px" }}>
@@ -41,7 +49,7 @@ const CodeCell: React.FC<CodeCellProps> = ({ id }) => {
               onPrettierError={prettierErrorHandler}
             />
           </Resizable>
-          <Preview message={message} />
+          <div className={classes["preview-container"]}>{previewWindow}</div>
         </div>
       </Resizable>
     </div>
