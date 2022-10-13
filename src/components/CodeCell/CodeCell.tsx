@@ -1,52 +1,35 @@
-import { useState } from "react";
-import { bundler } from "../../bundler/bundler";
-import {Cell} from "../../store";
+import {bundleActions, bundleProcessInit, Cell} from "../../store";
+import useTypedDispatch from "../hooks/use-typed-dispatch";
+import useTypedSelector from "../hooks/use-typed-selector";
 import Resizable from "../Resizable/Resizable";
 import classes from "./CodeCell.module.css";
 import CodeEditor from "./CodeEditor";
 import Preview from "./Preview";
 
 interface CodeCellProps {
-  id: Cell['id']
+  id: Cell["id"];
 }
 
-const CodeCell: React.FC<CodeCellProps> = ({id}) => {
-  const [code, setCode] = useState<{ code: string; error: string }>({
-    code: "",
-    error: "",
-  });
+const CodeCell: React.FC<CodeCellProps> = ({ id }) => {
+  const bundle = useTypedSelector((state) => state.bundle[id]);
 
-  const rawCodeBundler = async (rawCode: string) => {
-    try {
-      setCode({
-        code: `document.getElementById("root").innerHTML =
-          '<h3>Compiling...</h3>'`,
-        error: "",
-      });
-      const result = await bundler(rawCode);
-      setCode({
-        code: result.outputFiles![0].text,
-        error: "",
-      });
-    } catch (error) {
-      if (error instanceof Error) {
-        setCode({
-          code: "",
-          error: error.message,
-        });
-      }
-    }
+  const message = {
+    code: bundle? bundle.code: '',
+    error: bundle?.error,
+  };
+
+  const dispatch = useTypedDispatch();
+
+  const rawCodeBundler = (rawCode: string) => {
+    dispatch(bundleProcessInit(id, rawCode));
   };
 
   const prettierErrorHandler = (error: string) => {
-    setCode({
-      code: "",
-      error: error,
-    });
+    dispatch(bundleActions.end({ id, code: null, error: error }));
   };
 
   return (
-    <div style={{'marginBottom': '70px'}}>
+    <div style={{ marginBottom: "70px" }}>
       <Resizable direction="vertical">
         <div
           className={`${classes["cyberpunk-container"]} ${classes.codecell} `}
@@ -58,7 +41,7 @@ const CodeCell: React.FC<CodeCellProps> = ({id}) => {
               onPrettierError={prettierErrorHandler}
             />
           </Resizable>
-          <Preview message={code} />
+          <Preview message={message} />
         </div>
       </Resizable>
     </div>

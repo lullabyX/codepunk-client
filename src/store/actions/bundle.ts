@@ -7,10 +7,12 @@ export const bundleStartAction = (
   action: PayloadAction<BundleStartAction>
 ) => {
   const id = action.payload.id;
-  state[id].cellId = id;
-  state[id].loading = true;
-  state[id].code = "";
-  state[id].error = null;
+  state[id] = {
+    cellId: id,
+    loading: false,
+    code: "",
+    error: null,
+  };
 };
 
 export const bundleEndAction = (
@@ -18,6 +20,10 @@ export const bundleEndAction = (
   action: PayloadAction<BundleEndAction>
 ) => {
   const id = action.payload.id;
-  state[id].code = action.payload.code ? action.payload.code : "";
-  state[id].error = action.payload.error;
+  state[id] = {
+    cellId: id,
+    loading: false,
+    code: action.payload.code ? action.payload.code : "",
+    error: action.payload.error,
+  };
 };

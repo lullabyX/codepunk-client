@@ -5,7 +5,7 @@ import './Preview.css'
 interface previewProps {
   message: {
     code: string,
-    error: string,
+    error: string | null,
   }
 }
 const Preview: React.FC<previewProps> = ({ message }) => {

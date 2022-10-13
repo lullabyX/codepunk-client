@@ -20,7 +20,7 @@ const html = `
           "message",
           (event) => {
             try{
-              if(event.data.error.length > 0) {
+              if(event.data.error) {
                 errorHandler(event.data.error);
                 return;
               }
