@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import useTypedSelector from "../hooks/use-typed-selector";
 import AddCell from "./AddCell";
 import CellItem from "./CellItem";
+import classes from './CellList.module.css';
 
 const CellList: React.FC = () => {
   const cells = useTypedSelector(({ cell: { order, data } }) =>
@@ -18,7 +19,7 @@ const CellList: React.FC = () => {
   });
 
   return (
-    <div>
+    <div className={classes['cell-list']}>
       <AddCell isAlone={cellItems.length === 0} id={null} />
       {cellItems}
     </div>
