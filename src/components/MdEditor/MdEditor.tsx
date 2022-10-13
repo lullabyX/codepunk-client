@@ -1,11 +1,24 @@
 import MDEditor from "@uiw/react-md-editor";
 import { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { Cell, cellActions } from "../../store";
+import useTypedSelector from "../hooks/use-typed-selector";
 import "./MdEditor.css";
 
-const MdEditor: React.FC = () => {
-  const [mdValue, setMdValue] = useState<string | undefined>("# Skippy!");
+interface MdEditorProps {
+  id: Cell["id"];
+}
+
+const MdEditor: React.FC<MdEditorProps> = ({ id }) => {
   const [showEditor, setShowEditor] = useState(false);
   const editorRef = useRef<HTMLDivElement>(null);
+
+  const dispatch = useDispatch();
+  const { content } = useTypedSelector((state) => state.cell.data[id]);
+
+  const changeHandler = (text: string | undefined) => {
+    dispatch(cellActions.update({ id: id, content: text ? text : "" }));
+  };
 
   document.documentElement.setAttribute("data-color-mode", "dark");
 
@@ -34,7 +47,7 @@ const MdEditor: React.FC = () => {
         onDoubleClick={setShowEditor.bind(null, true)}
       >
         <MDEditor.Markdown
-          source={mdValue}
+          source={content}
           style={{ whiteSpace: "pre-wrap" }}
         />
       </div>
@@ -44,8 +57,8 @@ const MdEditor: React.FC = () => {
     <div className={`cyberpunk-md-editor-container`} ref={editorRef}>
       <MDEditor
         className={`cyberpunk-md-editor`}
-        value={mdValue}
-        onChange={setMdValue}
+        value={content}
+        onChange={changeHandler}
       />
     </div>
   );

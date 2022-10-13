@@ -14,14 +14,14 @@ const CellItem: React.FC<CellItemProps> = ({ cell }) => {
     child = (
       <Fragment>
         <MoveCell id={cell.id} />
-        <MdEditor />
+        <MdEditor id={cell.id} />
       </Fragment>
     );
   } else {
     child = (
       <Fragment>
         <MoveCell id={cell.id} />
-        <CodeCell />
+        <CodeCell id={cell.id} />
       </Fragment>
     );
   }
