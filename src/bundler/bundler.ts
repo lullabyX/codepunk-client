@@ -21,5 +21,7 @@ export const bundler = async (
     write: false,
     plugins: [unpkgResolvePlugin(), unpkgLoadPlugin(codeInput)],
     define: { "process.env.NODE_ENV": '"production"', global: "window" },
+    jsx: "automatic",
+    jsxImportSource: "react",
   });
 };

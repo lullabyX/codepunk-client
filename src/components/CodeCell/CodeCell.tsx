@@ -1,4 +1,5 @@
 import { bundleActions, bundleProcessInit, Cell } from "../../store";
+import useCumulativeCode from "../hooks/use-cumulative-code";
 import useTypedDispatch from "../hooks/use-typed-dispatch";
 import useTypedSelector from "../hooks/use-typed-selector";
 import Resizable from "../Resizable/Resizable";
@@ -13,6 +14,8 @@ interface CodeCellProps {
 const CodeCell: React.FC<CodeCellProps> = ({ id }) => {
   const bundle = useTypedSelector((state) => state.bundle[id]);
 
+  const cumulativeRawCode = useCumulativeCode(id);
+
   const message = {
     code: bundle ? bundle.code : "",
     error: bundle?.error,
@@ -20,8 +23,8 @@ const CodeCell: React.FC<CodeCellProps> = ({ id }) => {
 
   const dispatch = useTypedDispatch();
 
-  const rawCodeBundler = (rawCode: string) => {
-    dispatch(bundleProcessInit(id, rawCode));
+  const rawCodeBundler = () => {
+    dispatch(bundleProcessInit(id, cumulativeRawCode));
   };
 
   const prettierErrorHandler = (error: string) => {
@@ -29,7 +32,7 @@ const CodeCell: React.FC<CodeCellProps> = ({ id }) => {
   };
 
   const previewWindow = bundle?.loading ? (
-    <div className={classes['preview-loading']}>
+    <div className={classes["preview-loading"]}>
       <div className={classes["classic-5"]} />
     </div>
   ) : (
