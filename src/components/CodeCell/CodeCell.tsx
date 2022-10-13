@@ -37,7 +37,7 @@ const CodeCell: React.FC<CodeCellProps> = ({ id }) => {
   );
 
   return (
-    <div style={{ marginBottom: "70px" }}>
+    <div style={{ marginBottom: "25px" }}>
       <Resizable direction="vertical">
         <div
           className={`${classes["cyberpunk-container"]} ${classes.codecell} `}
