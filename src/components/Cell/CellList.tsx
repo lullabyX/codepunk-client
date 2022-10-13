@@ -19,7 +19,7 @@ const CellList: React.FC = () => {
 
   return (
     <div>
-      <AddCell id={null} />
+      <AddCell isAlone={cellItems.length === 0} id={null} />
       {cellItems}
     </div>
   );

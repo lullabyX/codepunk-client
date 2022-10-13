@@ -5,9 +5,10 @@ import classes from "./AddCell.module.css";
 
 interface AddCellProps {
   id: Cell["id"] | null;
+  isAlone?: boolean;
 }
 
-const AddCell: React.FC<AddCellProps> = ({ id }) => {
+const AddCell: React.FC<AddCellProps> = ({ id, isAlone }) => {
   const dispatch = useDispatch();
   const cellAddHandler = (cellType: Cell["type"]): void => {
     dispatch(
@@ -19,7 +20,7 @@ const AddCell: React.FC<AddCellProps> = ({ id }) => {
   };
 
   return (
-    <div className={classes.container}>
+    <div className={`${classes.container} ${(isAlone && isAlone === true)? classes['forceshow']: ''}`}>
       <div className={`${classes["container-button"]}`}>
         <button
           onClick={cellAddHandler.bind(null, "text")}
