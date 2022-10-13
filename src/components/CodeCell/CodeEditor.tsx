@@ -1,13 +1,16 @@
-import Editor, { OnMount } from "@monaco-editor/react";
+import Editor, { OnChange, OnMount } from "@monaco-editor/react";
 import prettier from "prettier";
 import parser from "prettier/parser-babel";
 import { useRef } from "react";
+import {useDispatch} from "react-redux";
 import "../../cyberpunk.css";
+import {Cell, cellActions} from "../../store";
 
 import "./CodeEditor.css";
 import "./syntex.css";
 
 interface codeEditorProps {
+  id: Cell['id']
   onBundle: (rawCode: string) => void;
   onPrettierError: (error: string) => void;
 }
@@ -15,9 +18,18 @@ interface codeEditorProps {
 const CodeEditor: React.FC<codeEditorProps> = (props) => {
   const editorRef = useRef<any>(null);
 
+  const dispatch = useDispatch();
+
   const editorMountHandler: OnMount = (editor, _) => {
     editorRef.current = editor;
   };
+
+  const changeHandler: OnChange = (value, _) => {
+    if (value)
+    {
+      dispatch(cellActions.update({id: props.id, content: value}))
+    }
+  }
 
   const previewHandler = () => {
     const rawCode: string = editorRef.current.getValue();
@@ -78,6 +90,7 @@ const CodeEditor: React.FC<codeEditorProps> = (props) => {
         language="javascript"
         theme="vs-dark"
         onMount={editorMountHandler}
+        onChange={changeHandler}
         options={editorOptions}
       />
     </div>

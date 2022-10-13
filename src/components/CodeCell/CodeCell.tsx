@@ -1,11 +1,16 @@
 import { useState } from "react";
 import { bundler } from "../../bundler/bundler";
+import {Cell} from "../../store";
 import Resizable from "../Resizable/Resizable";
 import classes from "./CodeCell.module.css";
 import CodeEditor from "./CodeEditor";
 import Preview from "./Preview";
 
-const CodeCell: React.FC = () => {
+interface CodeCellProps {
+  id: Cell['id']
+}
+
+const CodeCell: React.FC<CodeCellProps> = ({id}) => {
   const [code, setCode] = useState<{ code: string; error: string }>({
     code: "",
     error: "",
@@ -48,6 +53,7 @@ const CodeCell: React.FC = () => {
         >
           <Resizable direction="horizontal">
             <CodeEditor
+              id={id}
               onBundle={rawCodeBundler}
               onPrettierError={prettierErrorHandler}
             />
