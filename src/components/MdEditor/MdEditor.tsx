@@ -2,6 +2,7 @@ import MDEditor from "@uiw/react-md-editor";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Cell, cellActions } from "../../store";
+import MoveCell from "../Cell/MoveCell";
 import useTypedSelector from "../hooks/use-typed-selector";
 import "./MdEditor.css";
 
@@ -42,19 +43,22 @@ const MdEditor: React.FC<MdEditorProps> = ({ id }) => {
 
   if (!showEditor) {
     return (
-      <div
-        className={`cyberpunk-md-preview dotted`}
-        onDoubleClick={setShowEditor.bind(null, true)}
-      >
-        <MDEditor.Markdown
-          source={content}
-          style={{ whiteSpace: "pre-wrap" }}
-        />
+      <div>
+        <MoveCell isCodeCell={false} id={id} />
+        <div
+          className={`cyberpunk-md-preview dotted`}
+          onDoubleClick={setShowEditor.bind(null, true)}
+        >
+          <MDEditor.Markdown
+            source={content}
+            style={{ whiteSpace: "pre-wrap" }}
+          />
+        </div>
       </div>
     );
   }
   return (
-    <div className={`cyberpunk-md-editor-container`} ref={editorRef}>
+    <div ref={editorRef}>
       <MDEditor
         className={`cyberpunk-md-editor`}
         value={content}

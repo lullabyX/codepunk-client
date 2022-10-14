@@ -1,7 +1,103 @@
 .container {
+  height: 20px;
   position: relative;
   top: 20px;
+  width: 110px;
+  left: calc(100% - 116px);
   right: 5px;
   text-align: right;
-  z-index: 100;
+  z-index: 1;
+  opacity: 0.4;
+  transition: opacity ease-out 0.2s;
+}
+
+.code {
+  top: 30px;
+}
+
+.container:hover {
+  opacity: 1;
+  transition: opacity ease-in 0.2s;
+}
+
+.container button {
+  z-index: 2;
+  margin: 0px 2px;
+  padding: 0px;
+  border: none;
+  background: transparent;
+}
+
+.gg-chevron-up {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  transform: scale(var(--ggs, 1));
+  width: 20px;
+  height: 20px;
+}
+
+.gg-chevron-up::after {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid;
+  border-right: 2px solid;
+  transform: rotate(-45deg);
+  left: 5px;
+  bottom: 2px;
+}
+
+.gg-chevron-down {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  transform: scale(var(--ggs, 1));
+  width: 20px;
+  height: 20px;
+}
+
+.gg-chevron-down::after {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-bottom: 2px solid;
+  border-right: 2px solid;
+  transform: rotate(45deg);
+  left: 5px;
+  top: 3px;
+}
+
+.gg-close {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  transform: scale(var(--ggs, 1));
+  width: 20px;
+  height: 20px;
+}
+
+.gg-close::after,
+.gg-close::before {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  width: 14px;
+  height: 2px;
+  background: currentColor;
+  transform: rotate(45deg);
+  border-radius: 5px;
+  top: 9px;
+  left: 3px;
+}
+
+.gg-close::after {
+  transform: rotate(-45deg);
 }

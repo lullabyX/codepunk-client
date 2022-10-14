@@ -13,14 +13,13 @@ const CellItem: React.FC<CellItemProps> = ({ cell }) => {
   if (cell.type === "text") {
     child = (
       <Fragment>
-        <MoveCell id={cell.id} />
         <MdEditor id={cell.id} />
       </Fragment>
     );
   } else {
     child = (
       <Fragment>
-        <MoveCell id={cell.id} />
+        <MoveCell isCodeCell={true} id={cell.id} />
         <CodeCell id={cell.id} />
       </Fragment>
     );

@@ -17,8 +17,14 @@ export interface CellState {
 const cellInitialState: CellState = {
   loading: false,
   error: null,
-  order: [],
-  data: {},
+  order: ['asdf'],
+  data: {
+    asdf: {
+      type: 'text',
+      content: 'DoubleClick to Edit',
+      id: 'asdf'
+    }
+  },
 };
 
 export const cellSlice = createSlice({
