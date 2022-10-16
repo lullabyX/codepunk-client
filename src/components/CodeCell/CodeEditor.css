@@ -4,33 +4,58 @@
   width: calc(100% - 5px);
 }
 
-.editor-wrapper .button {
-  padding: 15px 20px;
-  position: absolute;
-  top: -52px;
-  left: calc(60% - 25px);
-  z-index: 20;
+.button-container {
+  height: 0px;
+  text-align: right;
+  position: relative;
+  top: -27px;
   opacity: 0;
   transition: opacity 0.3s;
-  transform: scale(0.5);
+}
+.button-container button {
+  z-index: 1;
+  /* top: -28px; */
+  height: 24px;
+  border: none;
+  border-radius: 0%;
+  font-size: 0.6rem;
+  line-height: 0.6rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 7px 15px;
+  padding-right: 12px;
+  margin: 0px 20px 0px 0px;
+  position: relative;
+  color: #fff;
+  border-right: 3px solid var(--border-color);
+  clip-path: polygon(
+    -15px 0%,
+    calc(100% + 15px) 0%,
+    calc(100% + 15px) 100%,
+    15px 100%,
+    -15px calc(100% - 30px)
+  );
+  cursor: pointer;
+  /* background-color: var(--background-color); */
+  outline: none;
+  display: inline-block;
 }
 
-.editor-wrapper .button-alt {
-  padding: 15px 20px;
+.button-container button:after {
+  content: "T-71";
+  display: block;
   position: absolute;
-  top: -52px;
-  left: calc(60% - 150px);
-  z-index: 20;
-  opacity: 0;
-  transition: opacity 0.3s;
-  transform: scale(0.5);
+  bottom: -1px;
+  right: 5px;
+  padding: 1px 1px 0px 1px;
+  font-size: 0.3rem;
+  line-height: 0.4rem;
+  color: #000;
+  background-color: var(--yellow-color);
+  border-left: 2px solid var(--border-color);
 }
 
-.editor-wrapper:hover button {
+.editor-wrapper:hover .button-container {
   opacity: 1;
-}
-
-.editor-wrapper .button:hover,
-.editor-wrapper .button-alt:hover {
-  z-index: 50;
 }

@@ -10,7 +10,7 @@ export const bundler = async (
   if (!esbuildIsInitialized) {
     await esbuild.initialize({
       worker: true,
-      wasmURL: "https://unpkg.com/esbuild-wasm/esbuild.wasm",
+      wasmURL: "https://unpkg.com/esbuild-wasm@0.15.10/esbuild.wasm",
     });
     esbuildIsInitialized = true;
   }

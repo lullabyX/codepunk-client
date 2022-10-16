@@ -1,7 +1,7 @@
 .container {
-  height: 20px;
+  height: 0;
   position: relative;
-  top: 20px;
+  top: 0;
   width: 110px;
   left: calc(100% - 116px);
   right: 5px;
@@ -12,7 +12,7 @@
 }
 
 .code {
-  top: 30px;
+  top: 10px;
 }
 
 .container:hover {

@@ -2,17 +2,18 @@ import Editor, { OnChange, OnMount } from "@monaco-editor/react";
 import prettier from "prettier";
 import parser from "prettier/parser-babel";
 import { useRef } from "react";
-import {useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import "../../cyberpunk.css";
-import {Cell, cellActions} from "../../store";
+import { Cell, cellActions } from "../../store";
 
 import "./CodeEditor.css";
 import "./syntex.css";
 
 interface codeEditorProps {
-  id: Cell['id']
+  id: Cell["id"];
   onBundle: (rawCode: string) => void;
   onPrettierError: (error: string) => void;
+  windowWidth: number;
 }
 
 const CodeEditor: React.FC<codeEditorProps> = (props) => {
@@ -25,22 +26,21 @@ const CodeEditor: React.FC<codeEditorProps> = (props) => {
   };
 
   const changeHandler: OnChange = (value, _) => {
-    if (value)
-    {
-      dispatch(cellActions.update({id: props.id, content: value}))
+    if (value) {
+      dispatch(cellActions.update({ id: props.id, content: value }));
     }
-  }
+  };
 
   const previewHandler = () => {
     const rawCode: string = editorRef.current.getValue();
     if (rawCode.length !== 0) {
-      props.onBundle(editorRef.current.getValue());
+      props.onBundle(rawCode);
     }
   };
 
   const formatHandler: React.MouseEventHandler<HTMLButtonElement> = () => {
     const unformatted = editorRef.current.getValue();
-    let formatted = '';
+    let formatted = "";
     try {
       formatted = prettier.format(unformatted, {
         parser: "babel",
@@ -49,8 +49,7 @@ const CodeEditor: React.FC<codeEditorProps> = (props) => {
       });
       editorRef.current.setValue(formatted);
     } catch (error) {
-      if (error instanceof Error)
-      {
+      if (error instanceof Error) {
         props.onPrettierError(error.message);
       }
     }
@@ -73,18 +72,27 @@ const CodeEditor: React.FC<codeEditorProps> = (props) => {
 
   return (
     <div className="editor-wrapper">
-      <button
-        className={`button-alt cyberpunk2077 green`}
-        onClick={formatHandler}
+      <div
+        className="button-container"
+        style={{ width: props.windowWidth - 30 }}
       >
-        Format_
-      </button>
-      <button
-        className={`cyberpunk2077 purple button`}
-        onClick={previewHandler}
-      >
-        Preview_
-      </button>
+        <div>
+          <button
+            style={{ right: props.windowWidth * 0.4 - 10 }}
+            className={`cyberpunk2077 green`}
+            onClick={formatHandler}
+          >
+            Format_
+          </button>
+          <button
+            style={{ right: props.windowWidth * 0.4 }}
+            className={`cyberpunk2077 red`}
+            onClick={previewHandler}
+          >
+            Preview_
+          </button>
+        </div>
+      </div>
       <Editor
         height="100%"
         language="javascript"

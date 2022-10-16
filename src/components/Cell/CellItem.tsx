@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import { Cell } from "../../store";
 import CodeCell from "../CodeCell/CodeCell";
 import MdEditor from "../MdEditor/MdEditor";
@@ -12,16 +11,16 @@ const CellItem: React.FC<CellItemProps> = ({ cell }) => {
   let child: JSX.Element;
   if (cell.type === "text") {
     child = (
-      <Fragment>
+      <div style={{ top: "0px", position: "relative" }}>
         <MdEditor id={cell.id} />
-      </Fragment>
+      </div>
     );
   } else {
     child = (
-      <Fragment>
+      <div style={{ top: "0px", position: "relative" }}>
         <MoveCell isCodeCell={true} id={cell.id} />
         <CodeCell id={cell.id} />
-      </Fragment>
+      </div>
     );
   }
   return <div>{child}</div>;

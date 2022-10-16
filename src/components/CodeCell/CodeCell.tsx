@@ -1,3 +1,4 @@
+import {useCallback, useState} from "react";
 import { bundleActions, bundleProcessInit, Cell } from "../../store";
 import useCumulativeCode from "../hooks/use-cumulative-code";
 import useTypedDispatch from "../hooks/use-typed-dispatch";
@@ -11,7 +12,8 @@ interface CodeCellProps {
   id: Cell["id"];
 }
 
-const CodeCell: React.FC<CodeCellProps> = ({ id }) => {
+const CodeCell: React.FC<CodeCellProps> = ({id}) => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
   const bundle = useTypedSelector((state) => state.bundle[id]);
 
   const cumulativeRawCode = useCumulativeCode(id);
@@ -39,15 +41,23 @@ const CodeCell: React.FC<CodeCellProps> = ({ id }) => {
     <Preview message={message} />
   );
 
+  const windowWidthUpdateHandler = useCallback((newWidth: number) => {
+    setWindowWidth(newWidth);
+  }, [])
+
   return (
     <div style={{ marginBottom: "25px" }}>
       <Resizable direction="vertical">
         <div
           className={`${classes["cyberpunk-container"]} ${classes.codecell} `}
         >
-          <Resizable direction="horizontal">
+          <Resizable
+            onWindowWithUpdate={windowWidthUpdateHandler}
+            direction="horizontal"
+          >
             <CodeEditor
               id={id}
+              windowWidth={windowWidth}
               onBundle={rawCodeBundler}
               onPrettierError={prettierErrorHandler}
             />
