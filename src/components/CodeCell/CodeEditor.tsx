@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import "../../cyberpunk.css";
 import { Cell, cellActions } from "../../store";
+import useTypedSelector from "../hooks/use-typed-selector";
 
 import "./CodeEditor.css";
 import "./syntex.css";
@@ -16,8 +17,16 @@ interface codeEditorProps {
   windowWidth: number;
 }
 
-const CodeEditor: React.FC<codeEditorProps> = (props) => {
+const CodeEditor: React.FC<codeEditorProps> = ({
+  id,
+  onBundle,
+  onPrettierError,
+  windowWidth,
+}) => {
   const editorRef = useRef<any>(null);
+  const fetchedRawCode = useTypedSelector(
+    (state) => state.cell.data[id].content
+  );
 
   const dispatch = useDispatch();
 
@@ -27,14 +36,14 @@ const CodeEditor: React.FC<codeEditorProps> = (props) => {
 
   const changeHandler: OnChange = (value, _) => {
     if (value) {
-      dispatch(cellActions.update({ id: props.id, content: value }));
+      dispatch(cellActions.update({ id: id, content: value }));
     }
   };
 
   const previewHandler = () => {
     const rawCode: string = editorRef.current.getValue();
     if (rawCode.length !== 0) {
-      props.onBundle(rawCode);
+      onBundle(rawCode);
     }
   };
 
@@ -50,7 +59,7 @@ const CodeEditor: React.FC<codeEditorProps> = (props) => {
       editorRef.current.setValue(formatted);
     } catch (error) {
       if (error instanceof Error) {
-        props.onPrettierError(error.message);
+        onPrettierError(error.message);
       }
     }
   };
@@ -72,20 +81,17 @@ const CodeEditor: React.FC<codeEditorProps> = (props) => {
 
   return (
     <div className="editor-wrapper">
-      <div
-        className="button-container"
-        style={{ width: props.windowWidth - 30 }}
-      >
+      <div className="button-container" style={{ width: windowWidth - 30 }}>
         <div>
           <button
-            style={{ right: props.windowWidth * 0.4 - 10 }}
+            style={{ right: windowWidth * 0.4 - 10 }}
             className={`cyberpunk2077 green`}
             onClick={formatHandler}
           >
             Format_
           </button>
           <button
-            style={{ right: props.windowWidth * 0.4 }}
+            style={{ right: windowWidth * 0.4 }}
             className={`cyberpunk2077 red`}
             onClick={previewHandler}
           >
@@ -94,6 +100,7 @@ const CodeEditor: React.FC<codeEditorProps> = (props) => {
         </div>
       </div>
       <Editor
+        value={fetchedRawCode}
         height="100%"
         language="javascript"
         theme="vs-dark"
