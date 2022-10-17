@@ -1,7 +1,7 @@
 import MDEditor from "@uiw/react-md-editor";
-import { useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
-import { Cell, cellActions } from "../../store";
+import {useEffect, useRef, useState} from "react";
+import {useDispatch} from "react-redux";
+import {Cell, cellActions} from "../../store";
 import MoveCell from "../Cell/MoveCell";
 import useTypedSelector from "../hooks/use-typed-selector";
 import "./MdEditor.css";
@@ -51,7 +51,6 @@ const MdEditor: React.FC<MdEditorProps> = ({ id }) => {
         >
           <MDEditor.Markdown
             source={content}
-            style={{ whiteSpace: "pre-wrap" }}
           />
         </div>
       </div>

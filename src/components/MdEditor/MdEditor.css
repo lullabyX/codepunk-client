@@ -111,9 +111,9 @@
   border-radius: unset;
 }
 
-/* .wmde-markdown {
-  font-family: "Advent Pro", arial;
-} */
+.wmde-markdown {
+  background-color: #000;
+}
 
 .cyberpunk-md-editor .w-md-editor-bar {
   position: relative;
