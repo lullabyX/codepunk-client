@@ -1,5 +1,5 @@
 import { Fragment, useEffect } from "react";
-import { fetchCells, postCells } from "../../store/action-creators/cells";
+import { fetchCells } from "../../store/action-creators/cells";
 import useTypedDispatch from "../hooks/use-typed-dispatch";
 import useTypedSelector from "../hooks/use-typed-selector";
 import AddCell from "./AddCell";
@@ -15,10 +15,6 @@ const CellList: React.FC = () => {
   useEffect(() => {
     dispatch(fetchCells());
   }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(postCells(cells));
-  }, [cells, dispatch]);
 
   const cellItems = cells.map((cell) => {
     return (
