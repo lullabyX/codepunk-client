@@ -1,8 +1,12 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import {
   DeleteAction,
+  FetchEndAction,
+  FetchErrorAction,
+  FetchStartAction,
   InsertAfterAction,
   MoveAction,
+  PostErrorAction,
   UpdateAction,
 } from "../action-types/cell";
 import { CellState } from "../slices/cell";
@@ -59,4 +63,39 @@ export const insertAfterAction = (
     type: action.payload.type,
     content: action.payload.type === "text" ? "Double-Click to Edit" : "",
   };
+};
+
+export const fetchStartAction = (
+  state: CellState,
+  _: PayloadAction<FetchStartAction>
+) => {
+  state.loading = true;
+  state.error = null;
+};
+
+export const fetchEndAction = (
+  state: CellState,
+  action: PayloadAction<FetchEndAction>
+) => {
+  state.loading = false;
+  state.order = action.payload.cells.map((cell) => cell.id);
+  state.data = action.payload.cells.reduce((preVal, cell) => {
+    preVal[cell.id] = cell;
+    return preVal;
+  }, {} as CellState["data"]);
+};
+
+export const fetchErrorAction = (
+  state: CellState,
+  action: PayloadAction<FetchErrorAction>
+) => {
+  state.loading = false;
+  state.error = action.payload.error;
+};
+
+export const postErrorAction = (
+  state: CellState,
+  action: PayloadAction<PostErrorAction>
+) => {
+  state.error = action.payload.error;
 };

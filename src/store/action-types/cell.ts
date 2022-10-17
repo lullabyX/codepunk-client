@@ -1,3 +1,4 @@
+import { PayloadAction } from "@reduxjs/toolkit";
 import { Cell, CellMoveDirection } from "../cell";
 
 export interface UpdateAction {
@@ -12,15 +13,33 @@ export interface MoveAction {
 
 export interface InsertAfterAction {
   id: Cell["id"] | null;
-  type: Cell['type']
+  type: Cell["type"];
 }
 
 export interface DeleteAction {
   id: Cell["id"];
 }
 
+export interface FetchStartAction {}
+
+export interface FetchEndAction {
+  cells: Cell[];
+}
+
+export interface FetchErrorAction {
+  error: string;
+}
+
+export interface PostErrorAction {
+  error: string
+}
+
 export type CellActions =
-  | UpdateAction
-  | MoveAction
-  | InsertAfterAction
-  | DeleteAction;
+  | PayloadAction<UpdateAction>
+  | PayloadAction<MoveAction>
+  | PayloadAction<InsertAfterAction>
+  | PayloadAction<DeleteAction>
+  | PayloadAction<FetchStartAction>
+  | PayloadAction<FetchEndAction>
+  | PayloadAction<FetchErrorAction>
+  | PayloadAction<PostErrorAction>;

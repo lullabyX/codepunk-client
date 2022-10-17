@@ -1,8 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   deleteAction,
+  fetchEndAction,
+  fetchErrorAction,
+  fetchStartAction,
   insertAfterAction,
   moveAction,
+  postErrorAction,
   updateAction,
 } from "../actions/cell";
 import { Cell } from "../cell";
@@ -29,6 +33,10 @@ export const cellSlice = createSlice({
     move: moveAction,
     delete: deleteAction,
     insertAfter: insertAfterAction,
+    fetchStart: fetchStartAction,
+    fetchEnd: fetchEndAction,
+    fetchError: fetchErrorAction,
+    postError: postErrorAction
   },
 });
 
