@@ -1,6 +1,6 @@
 {
   "name": "@codepunk_/client",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "files": [
     "build/"
   ],
@@ -61,5 +61,5 @@
       "last 1 safari version"
     ]
   },
-  "gitHead": "37a5ad73bd17f5b1a7ecee79caad150f4b286f74"
+  "gitHead": "6661c3d313b4978b98fb042754378fa730e3a4c0"
 }
