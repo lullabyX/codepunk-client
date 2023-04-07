@@ -2,13 +2,18 @@
 [![npm](https://img.shields.io/npm/v/codepunk)](https://www.npmjs.com/package/codepunk)
 
 
+CodePunk is a cyberpunk themed JavaScript notebook inspired by Stephen Grider's jsnote. It is almost like jupyter notebook but it runs JavaScript.
+CodePunk client can directly run NodeJS environment code in the browser.
 
 https://user-images.githubusercontent.com/20172066/230606408-f6db1b8b-bc8e-4d67-9663-0d535cce8fa0.mp4
 
+## How to use
 
 
-CodePunk is a cyberpunk themed JavaScript notebook inspired by Stephen Grider's jsnote. It is almost like jupyter notebook but it runs JavaScript.
-CodePunk client can directly run NodeJS environment code in the browser.
+
+https://user-images.githubusercontent.com/20172066/230613237-2383647c-7c87-449b-8d71-8080aef60c03.mp4
+
+
 
 # @codepunk_/client
 
